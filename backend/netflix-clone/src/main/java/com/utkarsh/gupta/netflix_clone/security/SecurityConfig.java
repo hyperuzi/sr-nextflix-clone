@@ -23,8 +23,9 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable());
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS));
         http.authorizeHttpRequests(authorize -> authorize.requestMatchers(
-                "/api/v1/signup","/api/v1/login" , "/api/v1/logout", "/api/v1/authcheck"
-                ).permitAll().anyRequest().authenticated());
+                "/api/v1/signup","/api/v1/login" , "/api/v1/logout", "/api/v1/authcheck").permitAll()
+                .requestMatchers("/**").permitAll()
+                .anyRequest().authenticated());
 //        http.addFilterBefore(endpointExistenceFilter, JwtRequestFilter.class);
         http.addFilterBefore(requestFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();

@@ -10,5 +10,8 @@ export default defineConfig({
         target: "http://localhost:8081",
       }
     }
+  },
+  build: {
+    outDir: 'dist', // This is the output directory
   }
 })
